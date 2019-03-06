@@ -5029,12 +5029,21 @@
     var option = arguments.length > 1 ? arguments[1] : undefined;
     var getOptionLabel$$1 = arguments.length > 2 ? arguments[2] : undefined;
     var getOptionValue$$1 = arguments.length > 3 ? arguments[3] : undefined;
+
+    var getStringValue = function getStringValue(value) {
+      if (typeof value === 'string') {
+        return value.toLowerCase();
+      } else if (value === null) {
+        return '';
+      } else {
+        return String(value).toLowerCase();
+      }
+    };
+
     var candidate = String(inputValue).toLowerCase();
-    var optionValue = getOptionValue$$1(option);
-    var valueToCompare = typeof optionValue === 'string' ? optionValue.toLowerCase() : optionValue.toString();
-    var optionLabel = getOptionLabel$$1(option).toLowerCase();
-    var labelToCompare = typeof optionLabel === 'string' ? optionLabel.toLowerCase() : optionLabel.toString();
-    return valueToCompare === candidate || labelToCompare === candidate;
+    var optionValue = getStringValue(getOptionValue$$1(option));
+    var optionLabel = getStringValue(getOptionLabel$$1(option));
+    return optionValue === candidate || optionLabel === candidate;
   };
 
   var builtins = {
