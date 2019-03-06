@@ -4859,9 +4859,11 @@ var compareOption = function compareOption() {
   var getOptionLabel$$1 = arguments.length > 2 ? arguments[2] : undefined;
   var getOptionValue$$1 = arguments.length > 3 ? arguments[3] : undefined;
   var candidate = String(inputValue).toLowerCase();
-  var optionValue = getOptionValue$$1(option).toLowerCase();
+  var optionValue = getOptionValue$$1(option);
+  var valueToCompare = typeof optionValue === 'string' ? optionValue.toLowerCase() : optionValue.toString();
   var optionLabel = getOptionLabel$$1(option).toLowerCase();
-  return optionValue === candidate || optionLabel === candidate;
+  var labelToCompare = typeof optionLabel === 'string' ? optionLabel.toLowerCase() : optionLabel.toString();
+  return valueToCompare === candidate || labelToCompare === candidate;
 };
 
 var builtins = {

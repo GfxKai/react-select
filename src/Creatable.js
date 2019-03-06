@@ -45,9 +45,11 @@ export type Props = SelectProps & CreatableProps;
 
 const compareOption = (inputValue = '', option, getOptionLabel, getOptionValue) => {
   const candidate = String(inputValue).toLowerCase();
-  const optionValue = getOptionValue(option).toLowerCase();
+  const optionValue = getOptionValue(option);
+  const valueToCompare = typeof optionValue === 'string' ? optionValue.toLowerCase() : optionValue.toString();
   const optionLabel = getOptionLabel(option).toLowerCase();
-  return optionValue === candidate || optionLabel === candidate;
+  const labelToCompare = typeof optionLabel === 'string' ? optionLabel.toLowerCase() : optionLabel.toString();
+  return valueToCompare === candidate || labelToCompare === candidate;
 };
 
 const builtins = {
